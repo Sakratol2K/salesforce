@@ -1,0 +1,9 @@
+<aura:component>
+    <aura:attribute name="todo" type="Object"/>
+    <div>
+            <p>Activity name: {!v.todo.activity}</p>
+            <p>Due date: {!v.todo.deadline}</p>
+            <lightning:button label="Done" />
+        </div>
+
+</aura:component>	

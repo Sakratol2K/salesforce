@@ -1,0 +1,52 @@
+<aura:component controller="ToDoController">
+    <!-- to get the data from the DB and set it to display-->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <aura:attribute name="newName" type="String" default="Daniel"/>
+
+    <!-- variable to store in the array -->
+    <aura:attribute name="activityName" type="String" default=""/>
+    <aura:attribute name="activityDeadline" type="Date" />
+
+    <!-- the array -->
+    <aura:attribute name="container" type="Object[]"/>
+
+        
+    <lightning:layout class="slds-page-header">
+        <lightning:layoutItem>
+            <div class="container">
+                <h1>Hello {!v.newName}!</h1>
+
+                <lightning:input name="inputActivity"
+                                 label="Acitvity: "
+                                 placeholder="Enter your activity.."
+                                 value="{!v.activityName}"
+                                 required="true"/>
+                
+                <lightning:input type="date"
+                                 name="inputDate"
+                                 label="Required deadline"
+                                 required="true" 
+                                 value="{!v.activityDeadline}" />
+
+                <!-- <p>
+                    {!v.activityName}
+                    {!v.activityDeadline}
+                </p> -->
+                
+                <lightning:button label="Add" onclick="{!c.handleClick}"/>
+                
+                <!-- HMM + {!v.container.length} -->
+
+                <aura:if isTrue="{!v.container.length != 0}"> 
+                    <aura:iteration items="{!v.container}" var="item">
+                        <c:todoItem todo="{!item}"/>
+                    </aura:iteration>
+                </aura:if>
+
+            </div>
+        </lightning:layoutItem>
+    </lightning:layout>
+
+
+</aura:component>
